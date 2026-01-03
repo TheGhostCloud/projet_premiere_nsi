@@ -39,7 +39,6 @@ def afficher_tous():
         print("nom du pokémon: ", px[i][1] ,"\nnuméro: ", px[i][0], "\nType:",px[i][2],"Type secondaire: ",px[i][3] ,"\nPV: ", px[i][4], "Attaque: ", px[i][5], " Défense: ", px[i][6], "Vitesse: ", px[i][7], "\nGénération: ", px[i][8])
         print("=================================================================================")
         # pas besoin de return parce qu'elle s'arrete apres avoir tous afficher                                                                                     
-
         
 def rechercher_par_numero():
     numero_poke= int(input("Quel numero porte le pokemon que vous chercher ?" ))
@@ -71,7 +70,7 @@ def rechercher_par_type():
 def filtrer_par_pv_min():
     pv_mini = int(input("Quel sont les PV minimun ?"))
     tab_pv_mini= []										## plus simple pour tous les affichez
-    assert pv_mini >= 0, "	vos PV sont négatif, c' est impossible"
+    assert pv_mini >= 0, " vos PV sont négatif, c' est impossible"
     print('Les pokemon avec avec ', pv_mini ,'PV sont:')
     for i in range(len(px)):
         if pv_mini <= px[i][4]: 
@@ -79,6 +78,7 @@ def filtrer_par_pv_min():
     if  tab_pv_mini== []:
         return " Aucun pokemon possède au moins ces PV"
     else:
+        tab_pv_mini.sort(key=lambda p: p[4]) 
         for o in range(len(tab_pv_mini)):
             print("nom du pokémon: ", tab_pv_mini[o][1] ,"\nnuméro: ", tab_pv_mini[o][0], "\nType:",tab_pv_mini[o][2],"Type secondaire: ",tab_pv_mini[o][3] ,"\nPV: ", tab_pv_mini[o][4], "Attaque: ", tab_pv_mini[o][5], " Défense: ", tab_pv_mini[o][6], "Vitesse: ", tab_pv_mini[o][7], "\nGénération: ", tab_pv_mini[o][8])
             print("=================================================================================")
@@ -262,7 +262,7 @@ while choix != 9:
     print(" 1 - Affichez tous les pokemons")
     print(" 2 - Recherchez les pokemons par numéro")
     print(" 3 - Rechercher les pokemons par type")
-    print(" 4 - Filtrer les pokémon par PV min")
+    print(" 4 - Filtrer les pokémons par PV minimum")
     print(" 5 - Rechercher par nom")
     print(" 6 - Pokemon avec la plus grande attaque")
     print(" 7 - Moyenne des PV")
@@ -272,7 +272,7 @@ while choix != 9:
     print("11 - trier les pokemons selon diverses critères")
     print("12 - Quitter")                           
     choix= int(input("Q'est-ce que vous voulez faire ?"))
-    
+
     if choix == 1 :
         print(afficher_tous())
     elif choix == 2 :
