@@ -193,6 +193,69 @@ def supprimer_poke():
     if supp not in px:
         return "Ce pokemon n'est pas dans le pokedex"
 
+def tri():
+    cu = 0
+    while cu != 'Stop':
+        print("Cette fonctionnalité sert à trier les pokemons present dans le pokedex selon certains critères comme; Nom, type, Pv, Vitesse, Attaque, Defense, Generation, ")
+        print("Si voulez arreter le programme inserer dans la console: stop")
+        print("Selon quels criteres voulez-vous trier les pokemon du pokedex ?")
+        cu = str(input("Comment voulez-vous trier les pokemons ?")).strip().capitalize()	# cu = choix utilisateur
+        if cu == 'Stop':
+            break
+        elif cu == 'Attaque':
+            attaque_liste = []
+            for i in range(len(px)):
+                attaque_liste.append(px[i])
+            for i in range(len(attaque_liste)):
+                attaque_liste.sort(key=lambda p: p[5]) ## sert à trier grâce à cette indice précis, peut même le faire à l'envers
+                print("nom du pokémon: ", attaque_liste[i][1] ,"\nnuméro: ", attaque_liste[i][0], "\nType:",attaque_liste[i][2],"Type secondaire: ",attaque_liste[i][3] ,"\nPV: ", attaque_liste[i][4], "Attaque: ", attaque_liste[i][5], " Défense: ", attaque_liste[i][6], "Vitesse: ", attaque_liste[i][7], "\nGénération: ", attaque_liste[i][8])
+                print("=========================================================")
+        elif cu == 'Pv':
+            pv_liste= []
+            for i in range(len(px)):
+                pv_liste.append(px[i])
+            for i in range(len(pv_liste)):
+                pv_liste.sort(key=lambda p: p[4]) ## sert à trier grâce à cette indice précis, peut même le faire à l'envers
+                print("nom du pokémon: ", pv_liste[i][1] ,"\nnuméro: ", pv_liste[i][0], "\nType:",pv_liste[i][2],"Type secondaire: ",pv_liste[i][3] ,"\nPV: ", pv_liste[i][4], "Attaque: ", pv_liste[i][5], " Défense: ", pv_liste[i][6], "Vitesse: ", pv_liste[i][7], "\nGénération: ", pv_liste[i][8])
+                print("=========================================================")
+        elif cu == 'Defense':
+            defense_liste= []
+            for i in range(len(px)):
+                defense_liste.append(px[i])
+            for i in range(len(defense_liste)):
+                defense_liste.sort(key=lambda p: p[6]) ## sert à trier grâce à cette indice précis, peut même le faire à l'envers
+                print("nom du pokémon: ", defense_liste[i][1] ,"\nnuméro: ", defense_liste[i][0], "\nType:",defense_liste[i][2],"Type secondaire: ",defense_liste[i][3] ,"\nPV: ", defense_liste[i][4], "Attaque: ", defense_liste[i][5], " Défense: ", defense_liste[i][6], "Vitesse: ", defense_liste[i][7], "\nGénération: ", defense_liste[i][8])
+                print("=========================================================")
+        elif cu == 'Vitesse':
+            vitesse_liste= []
+            for i in range(len(px)):
+                vitesse_liste.append(px[i])
+            for i in range(len(vitesse_liste)):
+                vitesse_liste.sort(key=lambda p: p[7]) 
+                print("nom du pokémon: ", vitesse_liste[i][1] ,"\nnuméro: ", vitesse_liste[i][0], "\nType:",vitesse_liste[i][2],"Type secondaire: ",vitesse_liste[i][3] ,"\nPV: ", vitesse_liste[i][4], "Attaque: ", vitesse_liste[i][5], " Défense: ", vitesse_liste[i][6], "Vitesse: ", vitesse_liste[i][7], "\nGénération: ", vitesse_liste[i][8])
+                print("=========================================================")
+        elif cu == 'Generation':
+            gen_liste= []
+            for i in range(len(px)):
+                gen_liste.append(px[i])
+            for i in range(len(gen_liste)):  
+                gen_liste.sort(key=lambda p: p[8])
+                print("nom du pokémon: ", gen_liste[i][1] ,"\nnuméro: ", gen_liste[i][0], "\nType:",gen_liste[i][2],"Type secondaire: ",gen_liste[i][3] ,"\nPV: ", gen_liste[i][4], "Attaque: ", gen_liste[i][5], " Défense: ", gen_liste[i][6], "Vitesse: ", gen_liste[i][7], "\nGénération: ", gen_liste[i][8])
+                print("=========================================================")
+        elif cu == 'Type':                            
+            px_trie_par_type = sorted(px, key= lambda p: p[2] )
+            for i in range(len(px_trie_par_type)):          
+                print("nom du pokémon: ", px_trie_par_type[i][1] ,"\nnuméro: ", px_trie_par_type[i][0], "\nType:",px_trie_par_type[i][2],"Type secondaire: ",px_trie_par_type[i][3] ,"\nPV: ", px_trie_par_type[i][4], "Attaque: ", px_trie_par_type[i][5], " Défense: ", px_trie_par_type[i][6], "Vitesse: ", px_trie_par_type[i][7], "\nGénération: ", px_trie_par_type[i][8])
+                print("=========================================================")
+        elif cu == 'Nom':                            
+            px_trie_par_nom = sorted(px, key= lambda p: p[1] )
+            for i in range(len(px_trie_par_nom)):          
+                print("nom du pokémon: ", px_trie_par_nom[i][1] ,"\nnuméro: ", px_trie_par_nom[i][0], "\nType:",px_trie_par_nom[i][2],"Type secondaire: ",px_trie_par_nom[i][3] ,"\nPV: ", px_trie_par_nom[i][4], "Attaque: ", px_trie_par_nom[i][5], " Défense: ", px_trie_par_nom[i][6], "Vitesse: ", px_trie_par_nom[i][7], "\nGénération: ", px_trie_par_nom[i][8])
+                print("=========================================================")
+        else:
+             print("Attention, tu as peut-etre mal orthographie, il ne faut pas mettre les accents")
+
+
 choix = 0
 while choix != 9:
     print("=== MENU POKEDEX ===")
@@ -206,7 +269,8 @@ while choix != 9:
     print(" 8 - Ajouter un pokemon")
     print(" 9 - Faire un duel entre pokemon")
     print("10 - Supprimer un pokemon du pokedex")
-    print("11 - Quitter")                           
+    print("11 - trier les pokemons selon diverses critères")
+    print("12 - Quitter")                           
     choix= int(input("Q'est-ce que vous voulez faire ?"))
     
     if choix == 1 :
@@ -231,6 +295,8 @@ while choix != 9:
     elif choix == 10:
         print(supprimer_poke())
     elif choix == 11:
+        print(tri())
+    elif choix == 12:
         break
     else:
         print("Ce choix n'est pas disponible")  
