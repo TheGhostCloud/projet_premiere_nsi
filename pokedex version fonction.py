@@ -30,8 +30,8 @@ def afficher_pokemon():
     for i in range(len(px)):				# regarder dans tout la liste(= le pokedex)
         if pokemon == px[i][1]:
             return("nom du pokémon: ", px[i][1] ,"numéro: ", px[i][0], "Type:",px[i][2],"Type secondaire: ",px[i][3] ,"PV: ", px[i][4], "Attaque: ", px[i][5], " Défense: ", px[i][6], "Vitesse: ", px[i][7], "Génération: ", px[i][8])
-        else:
-            return "Ce pokemon est absent du pokedex" 
+    if pokemon not in px :
+        return "Ce pokemon est absent du pokedex" 
 
 def afficher_tous():
     print("Voici tous les pokémon:") 
