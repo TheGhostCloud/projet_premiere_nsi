@@ -27,7 +27,7 @@ px = [(1, "Bulbizarre", "Plante", "Poison", 45, 49, 49, 45, 1),
     
 def afficher_pokemon():
     pokemon = str(input("Quel est le pokemon que vous chercher ?")).strip().capitalize()  # pour ne mettre que des chaine de carac.
-    for i in range(len(px)):				# regarder dans tout la liste(= le pokedex)
+    for i in range(len(px)):
         if pokemon == px[i][1]:
             return("nom du pokémon: ", px[i][1] ,"numéro: ", px[i][0], "Type:",px[i][2],"Type secondaire: ",px[i][3] ,"PV: ", px[i][4], "Attaque: ", px[i][5], " Défense: ", px[i][6], "Vitesse: ", px[i][7], "Génération: ", px[i][8])
     if pokemon not in px :
@@ -55,11 +55,11 @@ def rechercher_par_numero():
 
 def rechercher_par_type():  
     type_p= str(input("Quel type chercher vous ?" )).strip().capitalize() ## Pour que la chaine de caractère est une maj au début et que des minuscules + enlève les espaces inutiles
-    type_recherche = []                                                   ## verif que rechercher_par_type() n'est pas vide
+    type_recherche = []                                                   
     for i in range(len(px)):
         if type_p == px[i][2] or type_p == px[i][3]:
             type_recherche.append(px[i])
-    if type_recherche == []:
+    if type_recherche == []:                                             ## verif que rechercher_par_type() n'est pas vide
         return "Ce type n'est pas dans le pokedex"
     else:
         for o in range(len(type_recherche)):
@@ -100,7 +100,7 @@ def pokemon_max_attaque():
         L_attaque.append(px[i][5])
     L_attaque.sort()
     for i in range(len(px)):
-        if L_attaque[-1] == px[i][5]:				#opti avec la fonction maxi(tab) ?
+        if L_attaque[-1] == px[i][5]:                              
             print("Le(s) pokemon(s) avec la plus grande attaque est/ sont ","\nnom du pokémon: ", px[i][1] ,"\nnuméro: ", px[i][0], "\nType:",px[i][2],"Type secondaire: ",px[i][3] ,"\nPV: ", px[i][4], "Attaque: ", px[i][5], " Défense: ", px[i][6], "Vitesse: ", px[i][7], "\nGénération: ", px[i][8])
             print("=================================================================================")
     return ""
@@ -153,10 +153,10 @@ def duel_p():
     duel = []
     print("Pour faire un duel, indiquez nous quels pokemons voulez-vous faire combattre")
     print("Noubliez pas de vérifier AVANT de faire combattre, si les pokemons sont dans le pokedex via le menu 5")
-    p1 = rechercher_par_nom_duel()
+    p1 = rechercher_par_nom_pratique()
     numero1, nom1, type_principale1, type_secondaire1,PV1, attaque1, defense1 ,vitesse1, generation1 = p1
     duel.append(p1)
-    p2 = rechercher_par_nom_duel()
+    p2 = rechercher_par_nom_pratique()
     numero2, nom2, type_principale2, type_secondaire2,PV2, attaque2, defense2 ,vitesse2, generation2 = p2
     duel.append(p2)
     assert duel[0][1] != duel[1][1] , "Faire combattre les mêmes pokemons n'est pas très intelligent/ intéressant ^^ "
@@ -180,9 +180,11 @@ def duel_p():
                 elif attaque1 > defense2:
                     PV2 = PV2 - (attaque1 - defense2)
         if PV2 <= 0:
-            return "Le gagnant est: ", duel[0][1]
+            print("Le gagnant est: ", duel[0][1])
+            return ""
         elif PV1 <= 0:
-            return "Le gagnant est: ", duel[1][1]
+            print("Le gagnant est: ", duel[1][1])
+            return ""
 
 def supprimer_poke():
     supp = str(input("Quel pokemon voulait vous-supprimez ?(Inserer le nom)")).strip().capitalize()
@@ -199,7 +201,7 @@ def tri():
         print("Cette fonctionnalité sert à trier les pokemons present dans le pokedex selon certains critères comme; Nom, type, Pv, Vitesse, Attaque, Defense, Generation, ")
         print("Si voulez arreter le programme inserer dans la console: stop")
         print("Selon quels criteres voulez-vous trier les pokemon du pokedex ?")
-        cu = str(input("Comment voulez-vous trier les pokemons ?")).strip().capitalize()	# cu = choix utilisateur
+        cu = str(input("Comment voulez-vous trier les pokemons ?")).strip().capitalize()      # cu = choix utilisateur
         if cu == 'Stop':
             break
         elif cu == 'Attaque':
@@ -215,7 +217,7 @@ def tri():
             for i in range(len(px)):
                 pv_liste.append(px[i])
             for i in range(len(pv_liste)):
-                pv_liste.sort(key=lambda p: p[4]) ## sert à trier grâce à cette indice précis, peut même le faire à l'envers
+                pv_liste.sort(key=lambda p: p[4])
                 print("nom du pokémon: ", pv_liste[i][1] ,"\nnuméro: ", pv_liste[i][0], "\nType:",pv_liste[i][2],"Type secondaire: ",pv_liste[i][3] ,"\nPV: ", pv_liste[i][4], "Attaque: ", pv_liste[i][5], " Défense: ", pv_liste[i][6], "Vitesse: ", pv_liste[i][7], "\nGénération: ", pv_liste[i][8])
                 print("=========================================================")
         elif cu == 'Defense':
@@ -223,7 +225,7 @@ def tri():
             for i in range(len(px)):
                 defense_liste.append(px[i])
             for i in range(len(defense_liste)):
-                defense_liste.sort(key=lambda p: p[6]) ## sert à trier grâce à cette indice précis, peut même le faire à l'envers
+                defense_liste.sort(key=lambda p: p[6]) 
                 print("nom du pokémon: ", defense_liste[i][1] ,"\nnuméro: ", defense_liste[i][0], "\nType:",defense_liste[i][2],"Type secondaire: ",defense_liste[i][3] ,"\nPV: ", defense_liste[i][4], "Attaque: ", defense_liste[i][5], " Défense: ", defense_liste[i][6], "Vitesse: ", defense_liste[i][7], "\nGénération: ", defense_liste[i][8])
                 print("=========================================================")
         elif cu == 'Vitesse':
@@ -257,7 +259,7 @@ def tri():
 
 
 choix = 0
-while choix != 9:
+while True: #choix != 12:
     print("=== MENU POKEDEX ===")
     print(" 1 - Affichez tous les pokemons")
     print(" 2 - Recherchez les pokemons par numéro")
