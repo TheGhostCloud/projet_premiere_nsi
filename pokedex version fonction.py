@@ -25,7 +25,8 @@ px = [(1, "Bulbizarre", "Plante", "Poison", 45, 49, 49, 45, 1),
       (24, "Arbok", "Poison", "", 60, 85, 69, 80, 1),
       (25, "Pikachu", "Electrique", "", 35, 55, 40, 90, 1)]
     
-def afficher_pokemon():
+def afficher_pokemon()->str:
+    """Affiche le pokemon souhaité """
     pokemon = str(input("Quel est le pokemon que vous chercher ?")).strip().capitalize()  # pour ne mettre que des chaine de carac.
     for i in range(len(px)):
         if pokemon == px[i][1]:
@@ -34,6 +35,7 @@ def afficher_pokemon():
         return "Ce pokemon est absent du pokedex" 
 
 def afficher_tous():
+    """Affiche tous les pokemon existant dans le pokedex """
     print("Voici tous les pokémon:") 
     for i in range(len(px)):
         print("nom du pokémon: ", px[i][1] ,"\nnuméro: ", px[i][0], "\nType:",px[i][2],"Type secondaire: ",px[i][3] ,"\nPV: ", px[i][4], "Attaque: ", px[i][5], " Défense: ", px[i][6], "Vitesse: ", px[i][7], "\nGénération: ", px[i][8])
@@ -41,10 +43,11 @@ def afficher_tous():
         # pas besoin de return parce qu'elle s'arrete apres avoir tous afficher                                                                                     
         
 def rechercher_par_numero():
+    """Rechercher un pokemon(et toute ses infos) grâce à son numéros """
     numero_poke= int(input("Quel numero porte le pokemon que vous chercher ?" ))
     numero = []
-    for o in range (len(px)):
-        numero.append(px[o][0])								#collecte tous les num / plus simple pour après gerer les erreurs
+    for o in range (len(px)):        # essaie lste par compréhension ?
+        numero.append(px[o][0])                   #collecte tous les num / plus simple pour après gerer les erreurs
     for i in range(len(numero)):
         if numero_poke == numero[i]:
             print("nom du pokémon: ", px[i][1] ,"\nnuméro: ", px[i][0], "\nType:",px[i][2],"Type secondaire: ",px[i][3] ,"\nPV: ", px[i][4], "Attaque: ", px[i][5], " Défense: ", px[i][6], "Vitesse: ", px[i][7], "\nGénération: ", px[i][8])
@@ -53,7 +56,8 @@ def rechercher_par_numero():
     if numero_poke not in numero:
         return("Le numero n'est pas présent dans le pokedex")
 
-def rechercher_par_type():  
+def rechercher_par_type():
+    """Rechercher les pokemon(et toute leurs infos) grâce à leurs type """
     type_p= str(input("Quel type chercher vous ?" )).strip().capitalize() ## Pour que la chaine de caractère est une maj au début et que des minuscules + enlève les espaces inutiles
     type_recherche = []                                                   
     for i in range(len(px)):
@@ -68,6 +72,7 @@ def rechercher_par_type():
         return ""
 
 def filtrer_par_pv_min():
+    """Trouver des pokemon vec au moins X PV """
     pv_mini = int(input("Quel sont les PV minimun ?"))
     tab_pv_mini= []										## plus simple pour tous les affichez
     assert pv_mini >= 0, " vos PV sont négatif, c' est impossible"
@@ -95,6 +100,7 @@ def rechercher_par_nom():
             return("Ce pokemon n'est pas dans le pokedex ")
         
 def pokemon_max_attaque():
+    """Rechercher un pokemon(et toute ses infos) grâce à son nom """
     L_attaque= []
     for i in range(len(px)):
         L_attaque.append(px[i][5])
@@ -105,7 +111,8 @@ def pokemon_max_attaque():
             print("=================================================================================")
     return ""
 
-def moyenne_pv():
+def moyenne_pv()-> float:
+    """Fait une moyenne des PV des pokedex """
     somme =0
     for i in range(len(px)):
         somme= somme + px[i][4]
@@ -113,7 +120,10 @@ def moyenne_pv():
     print( "La moyenne des PV s'eleve à", moyenne)
     return ""
 
+
+
 def ajouter_pokemon():
+    """Ajoute un pokémon """
     nouv_p= []
     numero= int(input("Quel esl sont numero ?"))
     nouv_p.append(numero)
@@ -143,7 +153,8 @@ def ajouter_pokemon():
             print("=================================================================================")
             return ""
 
-def rechercher_par_nom_pratique(): ## 
+def rechercher_par_nom_pratique():
+    """Return que le nom du pokemon donc pratique à utiliser dans les autres fonction"""
     nom= str(input("Quel pokemon chercher vous ?")).strip().capitalize()
     for i in range(len(px)):
         if nom == px[i][1]:
@@ -196,6 +207,7 @@ def supprimer_poke():
         return "Ce pokemon n'est pas dans le pokedex"
 
 def tri():
+    """Tri les pokémon selon certains critère """
     cu = 0
     while cu != 'Stop':
         print("Cette fonctionnalité sert à trier les pokemons present dans le pokedex selon certains critères comme; Nom, type, Pv, Vitesse, Attaque, Defense, Generation, ")
@@ -259,7 +271,7 @@ def tri():
 
 
 choix = 0
-while True: #choix != 12:
+while True: 
     print("=== MENU POKEDEX ===")
     print(" 1 - Affichez tous les pokemons")
     print(" 2 - Recherchez les pokemons par numéro")
@@ -303,4 +315,4 @@ while True: #choix != 12:
     else:
         print("Ce choix n'est pas disponible")  
 
-## pour chercher un type secondaire "" on fait mets rien dans la recherche (juste une enter)
+## pour chercher un type secondaire "" on fait mets rien dans la recherche (juste une enter), pour rechercher par type
