@@ -69,12 +69,9 @@ def rechercher_par_type():
 def filtrer_par_pv_min():
     """Trouver des pokemon vec au moins X PV """
     pv_mini = int(input("Quel sont les PV minimun ?"))
-    tab_pv_mini= []										## plus simple pour tous les affichez
     assert pv_mini >= 0, " vos PV sont négatif, c' est impossible"
     print('Les pokemon avec avec ', pv_mini ,'PV sont:')
-    for i in range(len(px)):
-        if pv_mini <= px[i][4]: 
-            tab_pv_mini.append(px[i])
+    tab_pv_mini = [px[i] for i in range(len(px)) if pv_mini  <= px[i][4] ]
     if  tab_pv_mini== []:
         return " Aucun pokemon possède au moins ces PV"
     else:
@@ -165,7 +162,7 @@ def duel_p():
     p2 = rechercher_par_nom_pratique()
     numero2, nom2, type_principale2, type_secondaire2,PV2, attaque2, defense2 ,vitesse2, generation2 = p2
     duel.append(p2)
-    assert duel[0][1] != duel[1][1] , "Faire combattre les mêmes pokemons n'est pas très intelligent/ intéressant ^^ "
+    assert nom1 != nom2 , "Faire combattre les mêmes pokemons n'est pas très intelligent/ intéressant ^^ "
     while PV1 >= 0 or PV2 >= 0:
         if vitesse1 > vitesse2:
                 if defense2 > attaque1:
@@ -197,7 +194,11 @@ def supprimer_poke():
     for i in range(len(px)):
         if supp == px[i][1]:
             del(px[i])
-            return "Voici le nouveau pokedex", px
+    print(len(px))
+    for i in range(len(px)):
+        print("nom du pokémon: ", px[i][1] ,"\nnuméro: ", px[i][0], "\nType:",px[i][2],"Type secondaire: ",px[i][3] ,"\nPV: ", px[i][4], "Attaque: ", px[i][5], " Défense: ", px[i][6], "Vitesse: ", px[i][7], "\nGénération: ", px[i][8])
+        print("=================================================================================")
+    return ""
     if supp not in px:
         return "Ce pokemon n'est pas dans le pokedex"
 
@@ -212,41 +213,31 @@ def tri():
         if cu == 'Stop':
             break
         elif cu == 'Attaque':
-            attaque_liste = []
-            for i in range(len(px)):
-                attaque_liste.append(px[i])
+            attaque_liste = [px[i] for i in range(len(px))]
             for i in range(len(attaque_liste)):
                 attaque_liste.sort(key=lambda p: p[5]) ## sert à trier grâce à cette indice précis, peut même le faire à l'envers
                 print("nom du pokémon: ", attaque_liste[i][1] ,"\nnuméro: ", attaque_liste[i][0], "\nType:",attaque_liste[i][2],"Type secondaire: ",attaque_liste[i][3] ,"\nPV: ", attaque_liste[i][4], "Attaque: ", attaque_liste[i][5], " Défense: ", attaque_liste[i][6], "Vitesse: ", attaque_liste[i][7], "\nGénération: ", attaque_liste[i][8])
                 print("=========================================================")
         elif cu == 'Pv':
-            pv_liste= []
-            for i in range(len(px)):
-                pv_liste.append(px[i])
+            pv_liste = [px[i] for i in range(len(px))]
             for i in range(len(pv_liste)):
                 pv_liste.sort(key=lambda p: p[4])
                 print("nom du pokémon: ", pv_liste[i][1] ,"\nnuméro: ", pv_liste[i][0], "\nType:",pv_liste[i][2],"Type secondaire: ",pv_liste[i][3] ,"\nPV: ", pv_liste[i][4], "Attaque: ", pv_liste[i][5], " Défense: ", pv_liste[i][6], "Vitesse: ", pv_liste[i][7], "\nGénération: ", pv_liste[i][8])
                 print("=========================================================")
         elif cu == 'Defense':
-            defense_liste= []
-            for i in range(len(px)):
-                defense_liste.append(px[i])
+            defense_liste = [px[i] for i in range(len(px))]
             for i in range(len(defense_liste)):
                 defense_liste.sort(key=lambda p: p[6]) 
                 print("nom du pokémon: ", defense_liste[i][1] ,"\nnuméro: ", defense_liste[i][0], "\nType:",defense_liste[i][2],"Type secondaire: ",defense_liste[i][3] ,"\nPV: ", defense_liste[i][4], "Attaque: ", defense_liste[i][5], " Défense: ", defense_liste[i][6], "Vitesse: ", defense_liste[i][7], "\nGénération: ", defense_liste[i][8])
                 print("=========================================================")
         elif cu == 'Vitesse':
-            vitesse_liste= []
-            for i in range(len(px)):
-                vitesse_liste.append(px[i])
+            vitesse_liste = [px[i] for i in range(len(px))]
             for i in range(len(vitesse_liste)):
                 vitesse_liste.sort(key=lambda p: p[7]) 
                 print("nom du pokémon: ", vitesse_liste[i][1] ,"\nnuméro: ", vitesse_liste[i][0], "\nType:",vitesse_liste[i][2],"Type secondaire: ",vitesse_liste[i][3] ,"\nPV: ", vitesse_liste[i][4], "Attaque: ", vitesse_liste[i][5], " Défense: ", vitesse_liste[i][6], "Vitesse: ", vitesse_liste[i][7], "\nGénération: ", vitesse_liste[i][8])
                 print("=========================================================")
         elif cu == 'Generation':
-            gen_liste= []
-            for i in range(len(px)):
-                gen_liste.append(px[i])
+            gen_liste = [px[i] for i in range(len(px))]
             for i in range(len(gen_liste)):  
                 gen_liste.sort(key=lambda p: p[8])
                 print("nom du pokémon: ", gen_liste[i][1] ,"\nnuméro: ", gen_liste[i][0], "\nType:",gen_liste[i][2],"Type secondaire: ",gen_liste[i][3] ,"\nPV: ", gen_liste[i][4], "Attaque: ", gen_liste[i][5], " Défense: ", gen_liste[i][6], "Vitesse: ", gen_liste[i][7], "\nGénération: ", gen_liste[i][8])
