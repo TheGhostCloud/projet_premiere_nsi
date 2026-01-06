@@ -45,10 +45,8 @@ def afficher_tous():
 def rechercher_par_numero():
     """Rechercher un pokemon(et toute ses infos) grâce à son numéros """
     numero_poke= int(input("Quel numero porte le pokemon que vous chercher ?" ))
-    numero = []
-    for o in range (len(px)):        # essaie lste par compréhension ?
-        numero.append(px[o][0])                   #collecte tous les num / plus simple pour après gerer les erreurs
-    for i in range(len(numero)):
+    numero = [px[o][0] for o in range(len(px))]      #collecte tous les num / plus simple pour après gerer les erreurs
+    for i in range(len(numero)): 
         if numero_poke == numero[i]:
             print("nom du pokémon: ", px[i][1] ,"\nnuméro: ", px[i][0], "\nType:",px[i][2],"Type secondaire: ",px[i][3] ,"\nPV: ", px[i][4], "Attaque: ", px[i][5], " Défense: ", px[i][6], "Vitesse: ", px[i][7], "\nGénération: ", px[i][8])
             print("=================================================================================")
@@ -59,10 +57,7 @@ def rechercher_par_numero():
 def rechercher_par_type():
     """Rechercher les pokemon(et toute leurs infos) grâce à leurs type """
     type_p= str(input("Quel type chercher vous ?" )).strip().capitalize() ## Pour que la chaine de caractère est une maj au début et que des minuscules + enlève les espaces inutiles
-    type_recherche = []                                                   
-    for i in range(len(px)):
-        if type_p == px[i][2] or type_p == px[i][3]:
-            type_recherche.append(px[i])
+    type_recherche = [px[i] for i in range(len(px)) if type_p == px[i][2] or type_p == px[i][3]]
     if type_recherche == []:                                             ## verif que rechercher_par_type() n'est pas vide
         return "Ce type n'est pas dans le pokedex"
     else:
