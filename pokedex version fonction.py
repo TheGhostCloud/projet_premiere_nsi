@@ -259,6 +259,7 @@ def tri():
 choix = 0
 while True: 
     print("=== MENU POKEDEX ===")
+    orint("Veuillez mettre le numéros de la fonctionnalité souhtée")
     print(" 1 - Affichez tous les pokemons")
     print(" 2 - Recherchez les pokemons par numéro")
     print(" 3 - Rechercher les pokemons par type")
