@@ -1,4 +1,5 @@
 def ajouter_pokemon():
+    """Ajoute un pokémon """
     nouv_p= []
     numero= int(input("Quel esl sont numero ?"))
     nouv_p.append(numero)
