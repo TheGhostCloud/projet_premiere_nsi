@@ -1,6 +1,11 @@
 ## pokedex
 import random
 from colorama import Fore
+import pygame
+pygame.mixer.init()
+pygame.mixer.music.load("D:/lycée/nsi/projets pokedex/fct fini/windows-error-sound-effect.mp3")
+
+
 px = [(1, "Bulbizarre", "Plante", "Poison", 45, 49, 49, 45, 1),
       (2, "Ivysaur" , "Plante" , "Poison" , 60, 62, 65, 60, 1),
       (3, "Venusaur", "Plante", "Poison", 80, 82, 83, 80, 1 ),
@@ -326,6 +331,7 @@ while True:
         else:
             print("Ce choix n'est pas disponible")
     except  ValueError:
+        pygame.mixer.music.play()
         print(Fore.RED + "Erreur:",Fore.BLUE + "Votre valeur a un probleme de type.",Fore.GREEN + "Vous n'avez pas compris ce que vous devrirez me donner comme information :/")
         print(Fore.BLACK)
 ##pour chercher un type secondaire "" on fait mets rien dans la recherche (juste une enter), pour rechercher par type
