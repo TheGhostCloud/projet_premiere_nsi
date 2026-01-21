@@ -1,11 +1,5 @@
 ## pokedex
 import random
-from colorama import Fore
-import pygame
-pygame.mixer.init()
-pygame.mixer.music.load("D:/lycée/nsi/projets pokedex/fct fini/windows-error-sound-effect.mp3")
-
-
 px = [(1, "Bulbizarre", "Plante", "Poison", 45, 49, 49, 45, 1),
       (2, "Ivysaur" , "Plante" , "Poison" , 60, 62, 65, 60, 1),
       (3, "Venusaur", "Plante", "Poison", 80, 82, 83, 80, 1 ),
@@ -208,9 +202,13 @@ def ajouter_pokemon():
         if nouv_poke == px[i]:
             return "Ce pokemon est déja dans le pokedex"
         else:
+            sound_2.play()
             px.append(nouv_p)
             print("Votre pokemon a bien été ajouté"),print("nom du pokémon: ", px[-1][1] ,"\nnuméro: ", px[-1][0], "\nType:",px[-1][2],"Type secondaire: ",px[-1][3] ,"\nPV: ", px[-1][4], "Attaque: ", px[-1][5], " Défense: ", px[-1][6], "Vitesse: ", px[-1][7], "\nGénération: ", px[-1][8])
             print("=================================================================================")
+            pygame.mixer.init()
+            pygame.mixer.music.load("D:/lycée/nsi/projets pokedex/fct fini/click.mp3")
+            pygame.mixer.music.play()
             return ""
 
 def rechercher_par_nom_pratique():
@@ -287,6 +285,10 @@ def supprimer_poke():
 choix = 0
 while True:
     try:
+        from colorama import Fore, init
+        init(autoreset = True)       # pour pas avoir besoins de le reset à chaue fois
+        import pygame
+
         print("=== MENU POKEDEX ===")
         print("Veuillez mettre le numéros de la fonctionnalité souhtée")
         print(" 1 - Affichez tous les pokemons")
@@ -331,7 +333,19 @@ while True:
         else:
             print("Ce choix n'est pas disponible")
     except  ValueError:
+        pygame.mixer.init()
+        pygame.mixer.music.load("D:/lycée/nsi/projets pokedex/fct fini/windows-error-sound-effect.mp3")
         pygame.mixer.music.play()
         print(Fore.RED + "Erreur:",Fore.BLUE + "Votre valeur a un probleme de type.",Fore.GREEN + "Vous n'avez pas compris ce que vous devrirez me donner comme information :/")
-        print(Fore.BLACK)
+    except ModuleNotFoundError:
+        pygame.mixer.init()
+        pygame.mixer.music.load("D:/lycée/nsi/projets pokedex/fct fini/windows-error-sound-effect.mp3")
+        pygame.mixer.music.play()
+        print(Fore.RED + "Erreur, dans ce progamme on utilise 'pygame' si vous ne l'avez pas vous devez l'installer" )
+    except TypeError:
+        pygame.mixer.init()
+        pygame.mixer.music.load("D:/lycée/nsi/projets pokedex/fct fini/windows-error-sound-effect.mp3")
+        pygame.mixer.music.play()
+        print(Fore.RED + "Erreur:",Fore.BLUE + "Votre valeur a un probleme de type.")
+
 ##pour chercher un type secondaire "" on fait mets rien dans la recherche (juste une enter), pour rechercher par type
